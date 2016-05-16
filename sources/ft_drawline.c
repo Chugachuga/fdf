@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 16:30:40 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/03/25 19:21:35 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/16 19:27:02 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,33 +74,38 @@ void	ft_calcline(double x0, double y0, double x1, double y1, t_data data)
 
 data->dns.x0;*/
 
-void	ft_putdot(int xmax, int ymax, t_data data)
+void	ft_putdot(int xmax, int ymax, t_data data, int **tab)
 {
 	int a;
 	int b;
 	int x;
 	int y;
+	int x1;
+	int y1;
 
 	a = 0;
 	b = 0;
-	y = 50;
+	y1 = ymax * 14;
+	x1 = xmax * 20;
 	while (a < ymax)
 	{
-		x = 50;
+		x = x1;
+		y = y1;
 		b = 0;
 		while (b < xmax - 1)
 		{
-			mlx_pixel_put(data.mlx, data.win, x, y, 0x00FFFF);
 			if (a < ymax - 1)
-				ft_calcline(x, y, x, y + 20, data);
-			ft_calcline(x, y, x + 20, y, data);
-			b++;
+				ft_calcline(x, y - (tab[a][b] * 3), x - 20, y + 10 - (tab[a + 1][b] * 3), data);
+			ft_calcline(x, y - (tab[a][b] * 3), x + 20, y + 10 - (tab[a][b + 1] * 3), data);
 			x += 20;
+			y += 10;
+			b++;
 		}
 		if (b == xmax - 1 && a != ymax - 1)
-			ft_calcline(x, y, x, y + 20, data);
-		y += 20;
+			ft_calcline(x, y - (tab[a][b] * 3), x - 20, y + 10 - (tab[a + 1][b] * 3), data);
 		a++;
+		x1 -= 20;
+		y1 += 10;
 	}
 }
 
@@ -116,9 +121,9 @@ int main(int ac, char *av[])
 	{
 		xmax = ft_xmax(ft_read_txt(av[1]));
 		ymax = ft_ymax(ft_read_txt(av[1]));
-		data.win = mlx_new_window(data.mlx, xmax * 40, ymax * 40, "mlx 42");
-		ft_putdot(xmax, ymax, data);
+		data.win = mlx_new_window(data.mlx, xmax *45, ymax * 50, "mlx 42");
 		new = ft_putintab(av[1]);
+		ft_putdot(xmax, ymax, data, new);
 		//mlx_key_hook(data.win, my_key_funct, 0);
 		mlx_loop(data.mlx);
 	}
