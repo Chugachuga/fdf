@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 19:59:39 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/18 18:46:05 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/18 19:29:28 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "../libft/includes/libft.h"
 #include "../libft/includes/get_next_line.h"
 
-void		ft_tabatoi(char **tab, int **new, int i)
+void	ft_tabatoi(char **tab, int **new, int i)
 {
-	int j;
-	int a;
+	int		j;
+	int		a;
 
 	j = 0;
 	a = 0;
@@ -50,7 +50,7 @@ int		ft_xmax(char *str)
 int		ft_ymax(char *str)
 {
 	t_max	max;
-	int a;
+	int		a;
 
 	a = 0;
 	max.ymax = 0;
@@ -65,8 +65,8 @@ int		ft_ymax(char *str)
 
 int		**ft_inittab(t_max max)
 {
-	int **new;
-	int a;
+	int		**new;
+	int		a;
 
 	a = 0;
 	new = (int**)malloc(sizeof(int*) * max.ymax + 1);
@@ -104,12 +104,3 @@ int		**ft_putintab(char *str, t_max max)
 	}
 	return (NULL);
 }
-
-/*int		main(int ac, char *av[])
-{
-	if (ac == 2)
-	{
-		ft_putintab(av[1]);
-	}
-	return (0);
-}*/
