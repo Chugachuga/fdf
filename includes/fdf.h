@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 20:19:37 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/18 17:43:48 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/18 18:23:46 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 
 char	*ft_read_txt(char *str);
-int		**ft_putintab(char *str);
 int		ft_xmax(char *str);
 int		ft_ymax(char *str);
 
@@ -28,6 +27,12 @@ typedef struct		s_dns
 	double x0;
 	double x1;
 }					t_dns;
+
+typedef struct		s_max
+{
+	double		xmax;
+	double		ymax;
+}					t_max;
 
 typedef struct		s_t
 {
@@ -50,6 +55,8 @@ typedef struct		s_data
 	void		*mlx;
 	void		*win;
 	t_dns		*dns;
+	t_max		*max;
 }					t_data;
 
+int		**ft_putintab(char *str, t_max max);
 #endif

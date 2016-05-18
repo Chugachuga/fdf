@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 16:30:40 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/18 17:37:42 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/18 18:24:00 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,19 +103,18 @@ void	ft_putdot(int xmax, int ymax, t_data data, int **tab)
 
 int main(int ac, char *av[])
 {
-	t_data data;
+	t_data	data;
+	t_max	max;
 	data.mlx = mlx_init();
-	int xmax;
-	int ymax;
 	int **new;
 
 	if (ac == 2)
 	{
-		xmax = ft_xmax(ft_read_txt(av[1]));
-		ymax = ft_ymax(ft_read_txt(av[1]));
-		data.win = mlx_new_window(data.mlx, xmax *45, ymax * 50, "mlx 42");
-		new = ft_putintab(av[1]);
-		ft_putdot(xmax, ymax, data, new);
+		max.xmax = ft_xmax(ft_read_txt(av[1]));
+		max.ymax = ft_ymax(ft_read_txt(av[1]));
+		data.win = mlx_new_window(data.mlx, max.xmax * 45, max.ymax * 50, "mlx 42");
+		new = ft_putintab(av[1], max);
+		ft_putdot(max.xmax, max.ymax, data, new);
 		//mlx_key_hook(data.win, my_key_funct, 0);
 		mlx_loop(data.mlx);
 	}

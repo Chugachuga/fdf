@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 19:59:39 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/18 17:43:50 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/18 18:24:58 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,35 @@ void		ft_tabatoi(char **tab, int **new, int i)
 
 int		ft_xmax(char *str)
 {
-	int a;
-	int xmax;
+	t_max	max;
+	int		a;
 
 	a = 0;
-	xmax = 0;
+	max.xmax = 0;
 	while (str[a] != '\n')
 	{
 		if (ft_isdigit(str[a]) && (str[a + 1] == ' '
 						|| str[a + 1] == '\n'))
-			xmax++;
+			max.xmax++;
 		a++;
 	}
-	return (xmax);
+	return (max.xmax);
 }
+
 int		ft_ymax(char *str)
 {
+	t_max	max;
 	int a;
-	int ymax;
 
 	a = 0;
-	ymax = 0;
+	max.ymax = 0;
 	while (str[a])
 	{
 		if (str[a] == '\n')
-			ymax++;
+			max.ymax++;
 		a++;
 	}
-	return (ymax);
+	return (max.ymax);
 }
 
 int		**ft_inittab(int xmax, int ymax)
@@ -81,15 +82,15 @@ int		**ft_inittab(int xmax, int ymax)
 	return (new);
 }
 
-int		**ft_putintab(char *str)
+int		**ft_putintab(char *str, t_max max)
 {
-	t_t	t;
+	t_t		t;
 
 	t.i = 0;
 	if ((t.fd = open(str, O_RDONLY)) > 0)
 	{
 		t.tmp = ft_read_txt(str);
-		t.new1 = ft_inittab(ft_xmax(t.tmp), ft_ymax(t.tmp));
+		t.new1 = ft_inittab(max.xmax, max.ymax);
 		while ((t.ret = get_next_line(t.fd, &t.line)) > 0)
 		{
 			t.tab = ft_strsplit(t.line, ' ');
