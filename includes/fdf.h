@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 20:19:37 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/03/25 18:41:31 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/18 17:43:48 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ typedef struct		s_dns
 	double x0;
 	double x1;
 }					t_dns;
+
+typedef struct		s_t
+{
+	int		fd;
+	int		ret;
+	char	*line;
+	char	**tab;
+	int		**new1;
+	int		i;
+	char	*tmp;
+}					t_t;
 
 typedef struct		s_data
 {

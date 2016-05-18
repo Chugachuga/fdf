@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 19:59:39 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/14 17:12:29 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/18 17:43:50 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int		ft_xmax(char *str)
 	}
 	return (xmax);
 }
-
 int		ft_ymax(char *str)
 {
 	int a;
@@ -84,29 +83,23 @@ int		**ft_inittab(int xmax, int ymax)
 
 int		**ft_putintab(char *str)
 {
-	int		fd;
-	int		ret;
-	char	*line;
-	char	**tab;
-	int		**new;
-	int		i;
-	char	*tmp;
+	t_t	t;
 
-	i = 0;
-	if ((fd = open(str, O_RDONLY)) > 0)
+	t.i = 0;
+	if ((t.fd = open(str, O_RDONLY)) > 0)
 	{
-		tmp = ft_read_txt(str);
-		new = ft_inittab(ft_xmax(tmp), ft_ymax(tmp));
-		while ((ret = get_next_line(fd, &line)) > 0)
+		t.tmp = ft_read_txt(str);
+		t.new1 = ft_inittab(ft_xmax(t.tmp), ft_ymax(t.tmp));
+		while ((t.ret = get_next_line(t.fd, &t.line)) > 0)
 		{
-			tab = ft_strsplit(line, ' ');
-			ft_tabatoi(tab, new, i);
-			free(line);
-			free(tab);
-			i++;
+			t.tab = ft_strsplit(t.line, ' ');
+			ft_tabatoi(t.tab, t.new1, t.i);
+			free(t.line);
+			free(t.tab);
+			t.i++;
 		}
-		free(tmp);
-		return (new);
+		free(t.tmp);
+		return (t.new1);
 	}
 	return (NULL);
 }
