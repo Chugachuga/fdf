@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 16:30:40 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/16 19:27:02 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/18 17:37:42 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,7 @@ void	ft_drawline(double x0, double y0, double x1, double y1, double e2,
 			double err, double dx, double sx, double dy, double sy,
 				t_data data)
 {
-	if (y0 == y1)
-	{
-		while (x0 != x1 + 1)
-		{
-			mlx_pixel_put(data.mlx, data.win, x0, y0, 0x00FFFFFF);
-			x0++;
-		}
-	}
-	while (y0 !=  y1)
+	while (1)
 	{
 		mlx_pixel_put(data.mlx, data.win, x0, y0, 0x00FFFFFF);
 		if (x0 == x1 && y0 == y1)
