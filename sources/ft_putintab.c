@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 19:59:39 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/18 18:24:58 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/18 18:46:05 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,18 @@ int		ft_ymax(char *str)
 	return (max.ymax);
 }
 
-int		**ft_inittab(int xmax, int ymax)
+int		**ft_inittab(t_max max)
 {
 	int **new;
 	int a;
 
 	a = 0;
-	new = (int**)malloc(sizeof(int*) * ymax + 1);
+	new = (int**)malloc(sizeof(int*) * max.ymax + 1);
 	if (!new)
 		return (0);
-	while (a < ymax)
+	while (a < max.ymax)
 	{
-		new[a] = (int*)malloc(sizeof(int) * xmax + 1);
+		new[a] = (int*)malloc(sizeof(int) * max.xmax + 1);
 		if (!new[a])
 			return (NULL);
 		a++;
@@ -90,7 +90,7 @@ int		**ft_putintab(char *str, t_max max)
 	if ((t.fd = open(str, O_RDONLY)) > 0)
 	{
 		t.tmp = ft_read_txt(str);
-		t.new1 = ft_inittab(max.xmax, max.ymax);
+		t.new1 = ft_inittab(max);
 		while ((t.ret = get_next_line(t.fd, &t.line)) > 0)
 		{
 			t.tab = ft_strsplit(t.line, ' ');
