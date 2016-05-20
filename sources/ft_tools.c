@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 12:42:58 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 18:06:06 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 19:01:47 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	ft_pixel(t_data data, int x, int y)
 	if (y > data.y + 60)
 		colour = 0x663300;
 	if (y < data.y && y >= data.y - 10)
-		colour = 0x99FF33;
-	if (y < data.y - 10 && y >= data.y - 20)
 		colour = 0x99CC00;
+	if (y < data.y - 10 && y >= data.y - 20)
+		colour = 0x99FF33;
 	if (y < data.y - 20 && y >= data.y - 40)
 		colour = 0x99FFCC;
 	if (y < data.y - 40 && y >= data.y - 60)
