@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 20:19:37 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 12:45:17 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 15:27:30 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int					ft_xmax(char *str);
 int					ft_ymax(char *str);
 int					ft_scan(char *str);
 
-typedef struct		s_max
+/*typedef struct		s_max
 {
 	double			xmax;
 	double			ymax;
 }					t_max;
-
+*/
 typedef struct		s_l
 {
 	double			x0;
@@ -62,12 +62,17 @@ typedef struct		s_data
 {
 	double			x;
 	double			y;
+	double			x1;
+	double			y1;
+	int				**new1;
 	void			*mlx;
 	void			*win;
-	t_max			*max;
+	double			xmax;
+	double			ymax;
+	//t_max			*max;
 }					t_data;
 
-int					**ft_putintab(char *str, t_max max);
-void				ft_putdot(t_max max, t_data data, int **tab, int a);
+int					**ft_putintab(char *str, t_data data);
+void				ft_putdot(t_data data, int **tab, int a);
 
 #endif

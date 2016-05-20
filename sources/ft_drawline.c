@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 16:30:40 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/18 20:09:28 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 15:29:25 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,30 +72,28 @@ void	ft_line2(int a, int b, int **tab, t_data data)
 	ft_calcline(l, data);
 }
 
-void	ft_putdot(t_max max, t_data data, int **tab, int a)
+void	ft_putdot(t_data data, int **tab, int a)
 {
 	int b;
-	int x1;
-	int y1;
 
-	y1 = max.ymax * 14;
-	x1 = max.xmax * 20;
-	while (++a < max.ymax)
+	data.y1 = data.ymax * 14;
+	data.x1 = data.xmax * 20;
+	while (++a < data.ymax)
 	{
-		data.x = x1;
-		data.y = y1;
+		data.x = data.x1;
+		data.y = data.y1;
 		b = -1;
-		while (++b < max.xmax - 1)
+		while (++b < data.xmax - 1)
 		{
-			if (a < max.ymax - 1)
+			if (a < data.ymax - 1)
 				ft_line(a, b, tab, data);
 			ft_line2(a, b, tab, data);
 			data.x += 20;
 			data.y += 10;
 		}
-		if (b == max.xmax - 1 && a != max.ymax - 1)
+		if (b == data.xmax - 1 && a != data.ymax - 1)
 			ft_line(a, b, tab, data);
-		x1 -= 20;
-		y1 += 10;
+		data.x1 -= 20;
+		data.y1 += 10;
 	}
 }

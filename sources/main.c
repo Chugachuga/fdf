@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/18 20:03:46 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 12:45:21 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 15:57:12 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,44 @@
 
 int		ft_keyhook(int key)
 {
+	t_data	data;
+
 	if (key == 53)
 		exit(0);
+	if (key == 126)
+		data.y1 -= 10;
+	if (key == 125)
+		data.y1 += 10;
+	if (key == 124)
+		data.x1 += 10;
+	if (key == 123)
+		data.x1 -= 10;
+	//mlx_clear_window(data.mlx, data.win);
+	ft_putdot(data, data.new1, -1);
 	return (0);
 }
 
 int		main(int ac, char *av[])
 {
 	t_data	data;
-	t_max	max;
-	int		**new;
 
 	data.mlx = mlx_init();
 	if (ac == 2)
 	{
-		if (!ft_scan(ft_read_txt(av[1])))
-			return (0);
-		max.xmax = ft_xmax(ft_read_txt(av[1]));
-		max.ymax = ft_ymax(ft_read_txt(av[1]));
-		data.win = mlx_new_window(data.mlx,
-				max.xmax * 45, max.ymax * 50, "mlx 42");
-		new = ft_putintab(av[1], max);
-		ft_putdot(max, data, new, -1);
-		mlx_key_hook(data.win, ft_keyhook, 0);
-		mlx_loop(data.mlx);
-		return (0);
+		if (ft_read_txt(av[1]))
+		{
+			if (!ft_scan(ft_read_txt(av[1])))
+				return (0);
+			data.xmax = ft_xmax(ft_read_txt(av[1]));
+			data.ymax = ft_ymax(ft_read_txt(av[1]));
+			data.win = mlx_new_window(data.mlx,
+					data.xmax * 45, data.ymax * 50, "Fdf");
+			data.new1 = ft_putintab(av[1], data);
+			ft_putdot(data, data.new1, -1);
+			mlx_key_hook(data.win, ft_keyhook, 0);
+			mlx_loop(data.mlx);
+			
+		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 19:59:39 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/18 19:29:28 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 15:31:15 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,49 +32,49 @@ void	ft_tabatoi(char **tab, int **new, int i)
 
 int		ft_xmax(char *str)
 {
-	t_max	max;
+	t_data	data;
 	int		a;
 
 	a = 0;
-	max.xmax = 0;
+	data.xmax = 0;
 	while (str[a] != '\n')
 	{
 		if (ft_isdigit(str[a]) && (str[a + 1] == ' '
 						|| str[a + 1] == '\n'))
-			max.xmax++;
+			data.xmax++;
 		a++;
 	}
-	return (max.xmax);
+	return (data.xmax);
 }
 
 int		ft_ymax(char *str)
 {
-	t_max	max;
+	t_data	data;
 	int		a;
 
 	a = 0;
-	max.ymax = 0;
+	data.ymax = 0;
 	while (str[a])
 	{
 		if (str[a] == '\n')
-			max.ymax++;
+			data.ymax++;
 		a++;
 	}
-	return (max.ymax);
+	return (data.ymax);
 }
 
-int		**ft_inittab(t_max max)
+int		**ft_inittab(t_data data)
 {
 	int		**new;
 	int		a;
 
 	a = 0;
-	new = (int**)malloc(sizeof(int*) * max.ymax + 1);
+	new = (int**)malloc(sizeof(int*) * data.ymax + 1);
 	if (!new)
 		return (0);
-	while (a < max.ymax)
+	while (a < data.ymax)
 	{
-		new[a] = (int*)malloc(sizeof(int) * max.xmax + 1);
+		new[a] = (int*)malloc(sizeof(int) * data.xmax + 1);
 		if (!new[a])
 			return (NULL);
 		a++;
@@ -82,15 +82,14 @@ int		**ft_inittab(t_max max)
 	return (new);
 }
 
-int		**ft_putintab(char *str, t_max max)
+int		**ft_putintab(char *str, t_data data)
 {
 	t_t		t;
 
 	t.i = 0;
 	if ((t.fd = open(str, O_RDONLY)) > 0)
 	{
-		t.tmp = ft_read_txt(str);
-		t.new1 = ft_inittab(max);
+		t.new1 = ft_inittab(data);
 		while ((t.ret = get_next_line(t.fd, &t.line)) > 0)
 		{
 			t.tab = ft_strsplit(t.line, ' ');
@@ -99,7 +98,6 @@ int		**ft_putintab(char *str, t_max max)
 			free(t.tab);
 			t.i++;
 		}
-		free(t.tmp);
 		return (t.new1);
 	}
 	return (NULL);
