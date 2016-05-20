@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 20:19:37 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/18 20:14:04 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 12:45:17 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 char				*ft_read_txt(char *str);
 int					ft_xmax(char *str);
 int					ft_ymax(char *str);
+int					ft_scan(char *str);
 
 typedef struct		s_max
 {

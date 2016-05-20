@@ -6,14 +6,14 @@
 #    By: jgeslin  <jgeslin@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/15 12:36:55 by jgeslin           #+#    #+#              #
-#    Updated: 2016/05/20 11:49:11 by gvilmont         ###   ########.fr        #
+#    Updated: 2016/05/20 12:45:41 by gvilmont         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
 SRC = sources/ft_drawline.c sources/ft_putintab.c sources/ft_read_txt.c\
-	  sources/main.c
+	  sources/main.c sources/ft_tools.c
 
 OBJ = $(SRC:.c=.o)
 

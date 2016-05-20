@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/18 20:03:46 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 11:50:04 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 12:45:21 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		main(int ac, char *av[])
 	data.mlx = mlx_init();
 	if (ac == 2)
 	{
+		if (!ft_scan(ft_read_txt(av[1])))
+			return (0);
 		max.xmax = ft_xmax(ft_read_txt(av[1]));
 		max.ymax = ft_ymax(ft_read_txt(av[1]));
 		data.win = mlx_new_window(data.mlx,
