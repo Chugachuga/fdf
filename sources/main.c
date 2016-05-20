@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/18 20:03:46 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/18 20:07:02 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 11:48:26 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 #include "mlx.h"
 #include "../libft/includes/libft.h"
 #include "../includes/fdf.h"
+
+int		ft_keyhook(int key)
+{
+	if (key == 53)
+		exit(0);
+	return (0);
+}
 
 int		main(int ac, char *av[])
 {
@@ -30,7 +37,9 @@ int		main(int ac, char *av[])
 				max.xmax * 45, max.ymax * 50, "mlx 42");
 		new = ft_putintab(av[1], max);
 		ft_putdot(max, data, new, -1);
+		mlx_key_hook(data.win, ft_keyhook, 0);
 		mlx_loop(data.mlx);
+		return(0);
 	}
 	return (0);
 }
