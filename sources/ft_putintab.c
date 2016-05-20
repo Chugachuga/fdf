@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 19:59:39 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 15:31:15 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 18:10:43 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int		**ft_putintab(char *str, t_data data)
 			free(t.tab);
 			t.i++;
 		}
+		if (t.ret == -1)
+			return (0);
 		return (t.new1);
 	}
 	return (NULL);
