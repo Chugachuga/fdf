@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/18 20:03:46 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 15:57:12 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 17:43:37 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int		ft_keyhook(int key)
 		data.x1 += 10;
 	if (key == 123)
 		data.x1 -= 10;
-	//mlx_clear_window(data.mlx, data.win);
-	ft_putdot(data, data.new1, -1);
 	return (0);
 }
 
@@ -53,7 +51,6 @@ int		main(int ac, char *av[])
 			ft_putdot(data, data.new1, -1);
 			mlx_key_hook(data.win, ft_keyhook, 0);
 			mlx_loop(data.mlx);
-			
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 20:19:37 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 15:27:30 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/20 16:32:16 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char				*ft_read_txt(char *str);
 int					ft_xmax(char *str);
 int					ft_ymax(char *str);
 int					ft_scan(char *str);
-
 /*typedef struct		s_max
 {
 	double			xmax;
@@ -72,6 +71,7 @@ typedef struct		s_data
 	//t_max			*max;
 }					t_data;
 
+void				ft_pixel(t_data data, int x, int y);
 int					**ft_putintab(char *str, t_data data);
 void				ft_putdot(t_data data, int **tab, int a);
 
