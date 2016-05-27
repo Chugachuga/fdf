@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 20:19:37 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 16:32:16 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/27 19:02:21 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ char				*ft_read_txt(char *str);
 int					ft_xmax(char *str);
 int					ft_ymax(char *str);
 int					ft_scan(char *str);
-/*typedef struct		s_max
-{
-	double			xmax;
-	double			ymax;
-}					t_max;
-*/
+
 typedef struct		s_l
 {
 	double			x0;
@@ -59,20 +54,34 @@ typedef struct		s_a
 
 typedef struct		s_data
 {
+	double			a;
 	double			x;
 	double			y;
 	double			x1;
 	double			y1;
+	double			coex;
+	double			coey;
+	double			xmax;
+	double			ymax;
+	double			winx;
+	double			winy;
 	int				**new1;
 	void			*mlx;
 	void			*win;
-	double			xmax;
-	double			ymax;
-	//t_max			*max;
+	void			*img;
 }					t_data;
 
-void				ft_pixel(t_data data, int x, int y);
-int					**ft_putintab(char *str, t_data data);
-void				ft_putdot(t_data data, int **tab, int a);
+typedef struct		s_menu
+{
+	void			*win;
+}					t_menu;
+
+void				ft_setwin(t_data *data);
+int					ft_keyhook(int keycode, t_data *data);
+int					ft_expose_hook(t_data *data);
+void				ft_initdata(t_data *data);
+void				ft_pixel(t_data *data, int x, int y);
+int					**ft_putintab(char *str, t_data *data);
+void				ft_putdot(t_data *data, int **tab, int a, int b);
 
 #endif

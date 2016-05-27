@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 19:59:39 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 18:10:43 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/27 16:53:14 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,18 @@ int		ft_ymax(char *str)
 	return (data.ymax);
 }
 
-int		**ft_inittab(t_data data)
+int		**ft_inittab(t_data *data)
 {
 	int		**new;
 	int		a;
 
 	a = 0;
-	new = (int**)malloc(sizeof(int*) * data.ymax + 1);
+	new = (int**)malloc(sizeof(int*) * data->ymax + 1);
 	if (!new)
 		return (0);
-	while (a < data.ymax)
+	while (a < data->ymax)
 	{
-		new[a] = (int*)malloc(sizeof(int) * data.xmax + 1);
+		new[a] = (int*)malloc(sizeof(int) * data->xmax + 1);
 		if (!new[a])
 			return (NULL);
 		a++;
@@ -82,7 +82,7 @@ int		**ft_inittab(t_data data)
 	return (new);
 }
 
-int		**ft_putintab(char *str, t_data data)
+int		**ft_putintab(char *str, t_data *data)
 {
 	t_t		t;
 

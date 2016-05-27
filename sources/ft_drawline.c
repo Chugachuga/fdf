@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 16:30:40 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 17:42:24 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/27 19:05:06 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "../includes/fdf.h"
 
-void	ft_drawline(t_l l, t_a a, t_data data)
+void	ft_drawline(t_l l, t_a a, t_data *data)
 {
 	while (1)
 	{
@@ -37,7 +37,7 @@ void	ft_drawline(t_l l, t_a a, t_data data)
 	}
 }
 
-void	ft_calcline(t_l l, t_data data)
+void	ft_calcline(t_l l, t_data *data)
 {
 	t_a		a;
 
@@ -50,50 +50,53 @@ void	ft_calcline(t_l l, t_data data)
 	ft_drawline(l, a, data);
 }
 
-void	ft_line(int a, int b, int **tab, t_data data)
+void	ft_line(int a, int b, int **tab, t_data *data)
 {
 	t_l		l;
 
-	l.x0 = data.x;
-	l.y0 = data.y - (tab[a][b] * 3);
-	l.x1 = data.x - 20;
-	l.y1 = data.y + 10 - (tab[a + 1][b] * 3);
+	l.x0 = data->x;
+	l.y0 = data->y - (tab[a][b] * data->a);
+	l.x1 = data->x - 20;
+	l.y1 = data->y + 10 - (tab[a + 1][b] * data->a);
 	ft_calcline(l, data);
 }
 
-void	ft_line2(int a, int b, int **tab, t_data data)
+void	ft_line2(int a, int b, int **tab, t_data *data)
 {
 	t_l		l;
 
-	l.x0 = data.x;
-	l.y0 = data.y - (tab[a][b] * 3);
-	l.x1 = data.x + 20;
-	l.y1 = data.y + 10 - (tab[a][b + 1] * 3);
+	l.x0 = data->x;
+	l.y0 = data->y - (tab[a][b] * data->a);
+	l.x1 = data->x + 20;
+	l.y1 = data->y + 10 - (tab[a][b + 1] * data->a);
 	ft_calcline(l, data);
 }
 
-void	ft_putdot(t_data data, int **tab, int a)
+void	ft_putdot(t_data *data, int **tab, int a, int b)
 {
-	int b;
-
-	data.y1 = data.ymax * 14;
-	data.x1 = data.xmax * 20;
-	while (++a < data.ymax)
+	data->y1 = data->ymax * 14 + data->coey;
+	data->x1 = data->xmax * 20 + data->coex;
+	if (data->x1 >= 2000 || data->y1 >= 2000)
 	{
-		data.x = data.x1;
-		data.y = data.y1;
+		data->x1 = 200 + data->coex;
+		data->y1 = 200 + data->coey;
+	}
+	while (++a < data->ymax)
+	{
+		data->x = data->x1;
+		data->y = data->y1;
 		b = -1;
-		while (++b < data.xmax - 1)
+		while (++b < data->xmax - 1)
 		{
-			if (a < data.ymax - 1)
+			if (a < data->ymax - 1)
 				ft_line(a, b, tab, data);
 			ft_line2(a, b, tab, data);
-			data.x += 20;
-			data.y += 10;
+			data->x += 20;
+			data->y += 10;
 		}
-		if (b == data.xmax - 1 && a != data.ymax - 1)
+		if (b == data->xmax - 1 && a != data->ymax - 1)
 			ft_line(a, b, tab, data);
-		data.x1 -= 20;
-		data.y1 += 10;
+		data->x1 -= 20;
+		data->y1 += 10;
 	}
 }

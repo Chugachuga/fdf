@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/18 20:03:46 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/20 18:38:59 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/27 18:58:00 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,55 @@
 #include "../libft/includes/libft.h"
 #include "../includes/fdf.h"
 
-int		ft_keyhook(int key)
+void	ft_menu(t_data *data)
 {
-	t_data	data;
+	t_menu	menu;
 
-	if (key == 53)
-		exit(0);
-	if (key == 126)
-		data.y1 -= 10;
-	if (key == 125)
-		data.y1 += 10;
-	if (key == 124)
-		data.x1 += 10;
-	if (key == 123)
-		data.x1 -= 10;
-	return (0);
+	menu.win = mlx_new_window(data->mlx, 500, 160, "MENU");
+	mlx_string_put(data->mlx, menu.win, 10, 30, 0x00FFFFFF,
+				"Click on Fdf window to activate the mapping");
+	mlx_string_put(data->mlx, menu.win, 10, 10, 0x00FFFFFF, "Fdf");
+	mlx_string_put(data->mlx, menu.win, 10, 50, 0x00FFFFFF,
+				"Press Q to raise height");
+	mlx_string_put(data->mlx, menu.win, 10, 70, 0x00FFFFFF,
+				"Press A to low height");
+	mlx_string_put(data->mlx, menu.win, 10, 90, 0x00FFFFFF,
+				"Use Arrow to move the map");
+	mlx_string_put(data->mlx, menu.win, 10, 110, 0x00FFFFFF,
+				"Press ESC to quit");
+}
+
+void	fdf(t_data *data)
+{
+	mlx_key_hook(data->win, ft_keyhook, data);
+	mlx_expose_hook(data->win, ft_expose_hook, data);
+	ft_menu(data);
+	mlx_loop(data->mlx);
+}
+
+void	ft_setwin(t_data *data)
+{
+	if (data->xmax >= 60 || data->ymax >= 60)
+	{
+		data->winx = 1800;
+		data->winy = 1500;
+	}
+	else
+	{
+		data->winx = data->xmax * 45;
+		data->winy = data->ymax * 50;
+	}
 }
 
 int		main(int ac, char *av[])
 {
-	int fd;
-	int ret;
-	char *line;
-	t_data	data;
+	int		fd;
+	int		ret;
+	char	*line;
+	t_data	*data;
 
-	data.mlx = mlx_init();
+	if (!(data = (t_data*)malloc(sizeof(t_data))))
+		return (-1);
 	if (ac != 2)
 		return (0);
 	if ((fd = open(av[1], O_RDONLY)) > 0)
@@ -48,14 +72,13 @@ int		main(int ac, char *av[])
 		{
 			if (!ft_scan(ft_read_txt(av[1])))
 				return (0);
-			data.xmax = ft_xmax(ft_read_txt(av[1]));
-			data.ymax = ft_ymax(ft_read_txt(av[1]));
-			data.win = mlx_new_window(data.mlx,
-				data.xmax * 45, data.ymax * 50, "Fdf");
-			data.new1 = ft_putintab(av[1], data);
-			ft_putdot(data, data.new1, -1);
-			mlx_key_hook(data.win, ft_keyhook, 0);
-			mlx_loop(data.mlx);
+			data->xmax = ft_xmax(ft_read_txt(av[1]));
+			data->ymax = ft_ymax(ft_read_txt(av[1]));
+			ft_initdata(data);
+			data->win = mlx_new_window(data->mlx, data->winx,
+						data->winy, av[1]);
+			data->new1 = ft_putintab(av[1], data);
+			fdf(data);
 		}
 		return (0);
 	}
