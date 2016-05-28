@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/18 20:03:46 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/27 18:58:00 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/28 12:54:18 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	ft_menu(t_data *data)
 	t_menu	menu;
 
 	menu.win = mlx_new_window(data->mlx, 500, 160, "MENU");
-	mlx_string_put(data->mlx, menu.win, 10, 30, 0x00FFFFFF,
-				"Click on Fdf window to activate the mapping");
 	mlx_string_put(data->mlx, menu.win, 10, 10, 0x00FFFFFF, "Fdf");
 	mlx_string_put(data->mlx, menu.win, 10, 50, 0x00FFFFFF,
 				"Press Q to raise height");
@@ -35,9 +33,8 @@ void	ft_menu(t_data *data)
 
 void	fdf(t_data *data)
 {
-	mlx_key_hook(data->win, ft_keyhook, data);
+	mlx_hook(data->win, 2, 1, ft_keyhook, data);
 	mlx_expose_hook(data->win, ft_expose_hook, data);
-	ft_menu(data);
 	mlx_loop(data->mlx);
 }
 

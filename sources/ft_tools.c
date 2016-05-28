@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 12:42:58 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/27 19:05:08 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/28 12:51:15 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,15 @@ int		ft_keyhook(int keycode, t_data *data)
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 126)
-		data->coey -= 40;
+		data->coey -= 10;
 	if (keycode == 125)
-		data->coey += 40;
+		data->coey += 10;
 	if (keycode == 124)
-		data->coex += 40;
+		data->coex += 10;
 	if (keycode == 123)
-		data->coex -= 40;
+		data->coex -= 10;
+	if (keycode == 4)
+		ft_menu(data);
 	ft_expose_hook(data);
 	return (0);
 }

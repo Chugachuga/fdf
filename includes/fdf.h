@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 20:19:37 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/27 19:02:21 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/28 12:51:13 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct		s_menu
 	void			*win;
 }					t_menu;
 
+void				ft_menu(t_data *data);
 void				ft_setwin(t_data *data);
 int					ft_keyhook(int keycode, t_data *data);
 int					ft_expose_hook(t_data *data);
