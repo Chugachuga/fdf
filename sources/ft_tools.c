@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 12:42:58 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/28 13:07:34 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/28 14:00:11 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	ft_initdata(t_data *data)
 int		ft_expose_hook(t_data *data)
 {
 	mlx_clear_window(data->mlx, data->win);
+	mlx_string_put(data->mlx, data->win, 10, 10, 0x00FFFF,
+				"(H)MENU");
 	ft_putdot(data, data->new1, -1, -1);
 	return (0);
 }
