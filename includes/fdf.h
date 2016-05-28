@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 20:19:37 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/28 12:51:13 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/28 15:25:19 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct		s_a
 
 typedef struct		s_data
 {
-	double			a;
+	double			i;
 	double			x;
 	double			y;
 	double			x1;
@@ -69,6 +69,9 @@ typedef struct		s_data
 	void			*mlx;
 	void			*win;
 	void			*img;
+	t_l				l;
+	t_t				t;
+	t_a				a;
 }					t_data;
 
 typedef struct		s_menu

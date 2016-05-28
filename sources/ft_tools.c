@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 12:42:58 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/28 14:00:11 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/28 15:23:37 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_initdata(t_data *data)
 {
 	ft_setwin(data);
 	data->mlx = mlx_init();
-	data->a = 3;
+	data->i = 3;
 }
 
 int		ft_expose_hook(t_data *data)
@@ -77,11 +77,14 @@ int		ft_expose_hook(t_data *data)
 int		ft_keyhook(int keycode, t_data *data)
 {
 	if (keycode == 12)
-		data->a++;
+		data->i++;
 	if (keycode == 0)
-		data->a--;
+		data->i--;
 	if (keycode == 53)
+	{
+		free(data);
 		exit(0);
+	}
 	if (keycode == 126)
 		data->coey -= 10;
 	if (keycode == 125)

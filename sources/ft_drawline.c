@@ -6,7 +6,7 @@
 /*   By: gvilmont <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 16:30:40 by gvilmont          #+#    #+#             */
-/*   Updated: 2016/05/27 19:05:06 by gvilmont         ###   ########.fr       */
+/*   Updated: 2016/05/28 15:24:33 by gvilmont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	ft_line(int a, int b, int **tab, t_data *data)
 	t_l		l;
 
 	l.x0 = data->x;
-	l.y0 = data->y - (tab[a][b] * data->a);
+	l.y0 = data->y - (tab[a][b] * data->i);
 	l.x1 = data->x - 20;
-	l.y1 = data->y + 10 - (tab[a + 1][b] * data->a);
+	l.y1 = data->y + 10 - (tab[a + 1][b] * data->i);
 	ft_calcline(l, data);
 }
 
@@ -66,9 +66,9 @@ void	ft_line2(int a, int b, int **tab, t_data *data)
 	t_l		l;
 
 	l.x0 = data->x;
-	l.y0 = data->y - (tab[a][b] * data->a);
+	l.y0 = data->y - (tab[a][b] * data->i);
 	l.x1 = data->x + 20;
-	l.y1 = data->y + 10 - (tab[a][b + 1] * data->a);
+	l.y1 = data->y + 10 - (tab[a][b + 1] * data->i);
 	ft_calcline(l, data);
 }
 
